@@ -3,7 +3,7 @@ name: Backend Python CI
 on:
   pull_request:
     branches:
-      - main
+      - master
 
 jobs:
   lint:

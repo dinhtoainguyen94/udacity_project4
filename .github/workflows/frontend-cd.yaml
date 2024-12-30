@@ -4,7 +4,7 @@ on:
   workflow_dispatch:  # Allow manual triggering
   workflow_run:
     workflows: [Python CD]
-    branches: [main]
+    branches: [master]
     types:
       - completed
 
