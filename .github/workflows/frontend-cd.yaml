@@ -63,7 +63,7 @@ jobs:
     - name: Build, tag, and push the image to Amazon ECR
       env:
         ECR_REGISTRY: ${{ steps.login-ecr.outputs.registry }}
-        ECR_REPOSITORY: ${{ vars.AWS_ECR_REPOSITORY_WEB }}
+        ECR_REPOSITORY: "frontend"
         IMAGE_TAG: ${{ github.sha }}
       run: |
         docker build -t $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG -t $ECR_REGISTRY/$ECR_REPOSITORY:latest --build-arg=REACT_APP_MOVIE_API_URL=${{ vars.APP_MOVIE_API_URL }} .
