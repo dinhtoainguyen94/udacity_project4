@@ -44,6 +44,7 @@ jobs:
   
   test:  # Job for running tests
     runs-on: ubuntu-latest
+    needs: lint
     defaults:
       run:
         shell: bash
