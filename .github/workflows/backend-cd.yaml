@@ -6,8 +6,36 @@ on:
   push:
     branches:
       - master
+  pull_request:
+    branches:
+      - master
 
 jobs:
+  # Job for running tests
+  lint:
+    name: Lint
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        shell: bash
+        working-directory: ./starter/backend
+    steps:
+    - uses: actions/checkout@v4
+    - name: Set up Python 3.10
+      uses: actions/setup-python@v5
+      with:
+        python-version: '3.10'
+        cache: 'pip'
+        cache-dependency-path: './starter/backend/Pipfile.lock'
+    - name: Display Python version
+      run: python -c "import sys; print(sys.version)"
+    - name: Install pipenv
+      run: sudo pip install pipenv && sudo pip install flake8
+    - name: Install dependencies
+      run: pipenv install
+    - name: Running linter
+      run: pipenv run lint  
+  
   # Job for running tests
   test:  
     runs-on: ubuntu-latest
